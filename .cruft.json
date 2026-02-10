@@ -1,0 +1,16 @@
+{
+  "template": "https://github.com/lelegod/cookiecutter-course-template.git",
+  "commit": "411022902a19f3710f7fc847e4bcac3979d799e7",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "Database Systems",
+      "project_slug": "database_systems",
+      "author_name": "Kyle Nathan Yahya",
+      "python_version": "3.12",
+      "_template": "https://github.com/lelegod/cookiecutter-course-template.git",
+      "_commit": "411022902a19f3710f7fc847e4bcac3979d799e7"
+    }
+  },
+  "directory": null
+}
