@@ -1,0 +1,2942 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "DB Notebook",
+    "content": "\\about\nUSE University;\n# 2.13\nSELECT * FROM Student;\n# 2.14\nSELECT * FROM Course;\n# 2.15\nSELECT StudName FROM Student;\n# 2.16\nSELECT StudName, TotCredits FROM Student;\n# 2.17\nSELECT InstName, Salary, DeptName FROM Instructor;\n# 2.18\nSELECT StudName FROM Student\nWHERE TotCredits > 100;\n# 2.19\nSELECT * FROM Student\nWHERE DeptName = 'Comp. Sci.'\nAND TotCredits > 100;\n# 2.20\nSELECT * FROM Classroom\nWHERE Capacity > 25\nAND Capacity < 50\nOR Building = 'Painter';\n# 2.21\nSELECT DeptName FROM Department\nWHERE Building != 'Taylor';\n# 2.22\nSELECT CourseId, StudyYear, Grade FROM Student, Takes\nWhere Student.StudName = 'Shankar'\nAND Student.StudID = Takes.StudID\n# 2.23\nINSERT Course VALUES('CS-102', 'Weekly Seminar', 'Comp. Sci.', 0);\nINSERT Course VALUES('CS-103', 'Weekly Seminar', 'Comp. Sci.', 0);\nSELECT * FROM Course;\n# 2.24\nINSERT Section VALUES('CS-102', 1, 'Fall', 2009, NULL, NULL, NULL);\nSELECT * FROM Section;\n# 2.25\nINSERT INTO Takes\nSELECT Student.StudId, Section.CourseID, Section.SectionID, Section.Semester, Section.StudyYear, NUll\nFROM Student, Section\nWHERE Student.DeptName = 'Comp. Sci.'\nAND Section.CourseID = 'CS-102';\nSELECT * FROM Takes;\n# 2.26\nDELETE FROM Course\nWHERE CourseID = 'CS-102'\nOR CourseID = 'CS-103';\nSELECT * FROM Course\n# 2.27\nUPDATE Department SET Building = 'Taylor'\nWHERE DeptName = 'Finance';\nSELECT * FROM Department;\n",
+    "options": {
+        "tabSize": 4,
+        "insertSpaces": true,
+        "indentSize": 4,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": {
+        "cursorState": [
+            {
+                "inSelectionMode": false,
+                "selectionStart": {
+                    "lineNumber": 55,
+                    "column": 1
+                },
+                "position": {
+                    "lineNumber": 55,
+                    "column": 1
+                }
+            }
+        ],
+        "viewState": {
+            "scrollLeft": 0,
+            "firstPosition": {
+                "lineNumber": 49,
+                "column": 1
+            },
+            "firstPositionDeltaTop": -9
+        },
+        "contributionsState": {
+            "editor.contrib.folding": {},
+            "editor.contrib.wordHighlighter": false
+        }
+    },
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 1,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "content": "Welcome to the MySQL Shell - DB Notebook.\n\nPress Cmd+Enter to execute the code block.\n\nExecute \\sql to switch to SQL, \\js to JavaScript and \\ts to TypeScript mode.\nExecute \\help or \\? for help;",
+                            "language": "ansi"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 6
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 2,
+                "end": 2,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "a732c042-4b44-43fd-99d8-d20fdde8892d",
+                            "content": "OK, 0 records retrieved in 1.034ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 15
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 3,
+                "end": 4,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "0b3d7d06-901f-432b-c401-770d7ab32de3"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 29
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "0b3d7d06-901f-432b-c401-770d7ab32de3",
+                    "rows": [
+                        {
+                            "0": "00128",
+                            "1": "Zhang",
+                            "2": "1992-04-18",
+                            "3": "Comp. Sci.",
+                            "4": "102"
+                        },
+                        {
+                            "0": "12345",
+                            "1": "Shankar",
+                            "2": "1995-12-06",
+                            "3": "Comp. Sci.",
+                            "4": "32"
+                        },
+                        {
+                            "0": "19991",
+                            "1": "Brandt",
+                            "2": "1993-05-24",
+                            "3": "History",
+                            "4": "80"
+                        },
+                        {
+                            "0": "23121",
+                            "1": "Chavez",
+                            "2": "1992-04-18",
+                            "3": "Finance",
+                            "4": "110"
+                        },
+                        {
+                            "0": "44553",
+                            "1": "Peltier",
+                            "2": "1995-10-18",
+                            "3": "Physics",
+                            "4": "56"
+                        },
+                        {
+                            "0": "45678",
+                            "1": "Levy",
+                            "2": "1995-08-01",
+                            "3": "Physics",
+                            "4": "46"
+                        },
+                        {
+                            "0": "54321",
+                            "1": "Williams",
+                            "2": "1995-02-28",
+                            "3": "Comp. Sci.",
+                            "4": "54"
+                        },
+                        {
+                            "0": "55739",
+                            "1": "Sanchez",
+                            "2": "1995-06-04",
+                            "3": "Music",
+                            "4": "38"
+                        },
+                        {
+                            "0": "70557",
+                            "1": "Snow",
+                            "2": "1995-11-22",
+                            "3": "Physics",
+                            "4": "0"
+                        },
+                        {
+                            "0": "76543",
+                            "1": "Brown",
+                            "2": "1994-03-05",
+                            "3": "Comp. Sci.",
+                            "4": "58"
+                        },
+                        {
+                            "0": "76653",
+                            "1": "Aoi",
+                            "2": "1993-09-18",
+                            "3": "Elec. Eng.",
+                            "4": "60"
+                        },
+                        {
+                            "0": "98765",
+                            "1": "Bourikas",
+                            "2": "1992-09-23",
+                            "3": "Elec. Eng.",
+                            "4": "98"
+                        },
+                        {
+                            "0": "98988",
+                            "1": "Tanaka",
+                            "2": "1992-06-02",
+                            "3": "Biology",
+                            "4": "120"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "StudID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "StudName",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Birth",
+                            "field": "2",
+                            "dataType": {
+                                "type": 27,
+                                "needsQuotes": true
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "DeptName",
+                            "field": "3",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "TotCredits",
+                            "field": "4",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 13 records retrieved in 0.646ms"
+                    },
+                    "totalRowCount": 13,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.13\nSELECT * FROM Student",
+                    "updatable": true,
+                    "fullTableName": "Student"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 5,
+                "end": 6,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "68e5c11c-7db1-4912-c758-31dd7202ecf9"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 28
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "68e5c11c-7db1-4912-c758-31dd7202ecf9",
+                    "rows": [
+                        {
+                            "0": "BIO-101",
+                            "1": "Intro. to Biology",
+                            "2": "Biology",
+                            "3": "4"
+                        },
+                        {
+                            "0": "BIO-301",
+                            "1": "Genetics",
+                            "2": "Biology",
+                            "3": "4"
+                        },
+                        {
+                            "0": "BIO-399",
+                            "1": "Computational Biology",
+                            "2": "Biology",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-101",
+                            "1": "Intro. to Computer Science",
+                            "2": "Comp. Sci.",
+                            "3": "4"
+                        },
+                        {
+                            "0": "CS-190",
+                            "1": "Game Design",
+                            "2": "Comp. Sci.",
+                            "3": "4"
+                        },
+                        {
+                            "0": "CS-315",
+                            "1": "Robotics",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-319",
+                            "1": "Image Processing",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-347",
+                            "1": "Database System Concepts",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "EE-181",
+                            "1": "Intro. to Digital Systems",
+                            "2": "Elec. Eng.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "FIN-201",
+                            "1": "Investment Banking",
+                            "2": "Finance",
+                            "3": "3"
+                        },
+                        {
+                            "0": "HIS-351",
+                            "1": "World History",
+                            "2": "History",
+                            "3": "3"
+                        },
+                        {
+                            "0": "MU-199",
+                            "1": "Music Video Production",
+                            "2": "Music",
+                            "3": "3"
+                        },
+                        {
+                            "0": "PHY-101",
+                            "1": "Physical Principles",
+                            "2": "Physics",
+                            "3": "4"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "CourseID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Title",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "DeptName",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "Credits",
+                            "field": "3",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 13 records retrieved in 0.705ms"
+                    },
+                    "totalRowCount": 13,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.14\nSELECT * FROM Course",
+                    "updatable": true,
+                    "fullTableName": "Course"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 7,
+                "end": 8,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "973167ed-8995-4c2d-9cd6-f4f77b562072"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 36
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "973167ed-8995-4c2d-9cd6-f4f77b562072",
+                    "rows": [
+                        {
+                            "0": "Zhang"
+                        },
+                        {
+                            "0": "Shankar"
+                        },
+                        {
+                            "0": "Brandt"
+                        },
+                        {
+                            "0": "Chavez"
+                        },
+                        {
+                            "0": "Peltier"
+                        },
+                        {
+                            "0": "Levy"
+                        },
+                        {
+                            "0": "Williams"
+                        },
+                        {
+                            "0": "Sanchez"
+                        },
+                        {
+                            "0": "Snow"
+                        },
+                        {
+                            "0": "Brown"
+                        },
+                        {
+                            "0": "Aoi"
+                        },
+                        {
+                            "0": "Bourikas"
+                        },
+                        {
+                            "0": "Tanaka"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "StudName",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 13 records retrieved in 0.901ms"
+                    },
+                    "totalRowCount": 13,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.15\nSELECT StudName FROM Student",
+                    "updatable": false,
+                    "fullTableName": "Student"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 9,
+                "end": 10,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "dc84fff8-e78b-45b4-a031-e5deae080569"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 48
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "dc84fff8-e78b-45b4-a031-e5deae080569",
+                    "rows": [
+                        {
+                            "0": "Zhang",
+                            "1": "102"
+                        },
+                        {
+                            "0": "Shankar",
+                            "1": "32"
+                        },
+                        {
+                            "0": "Brandt",
+                            "1": "80"
+                        },
+                        {
+                            "0": "Chavez",
+                            "1": "110"
+                        },
+                        {
+                            "0": "Peltier",
+                            "1": "56"
+                        },
+                        {
+                            "0": "Levy",
+                            "1": "46"
+                        },
+                        {
+                            "0": "Williams",
+                            "1": "54"
+                        },
+                        {
+                            "0": "Sanchez",
+                            "1": "38"
+                        },
+                        {
+                            "0": "Snow",
+                            "1": "0"
+                        },
+                        {
+                            "0": "Brown",
+                            "1": "58"
+                        },
+                        {
+                            "0": "Aoi",
+                            "1": "60"
+                        },
+                        {
+                            "0": "Bourikas",
+                            "1": "98"
+                        },
+                        {
+                            "0": "Tanaka",
+                            "1": "120"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "StudName",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "TotCredits",
+                            "field": "1",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 13 records retrieved in 0.798ms"
+                    },
+                    "totalRowCount": 13,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.16\nSELECT StudName, TotCredits FROM Student",
+                    "updatable": false,
+                    "fullTableName": "Student"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 11,
+                "end": 12,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "8953b255-0584-4f93-f440-a1e121f5cbad"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 57
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "8953b255-0584-4f93-f440-a1e121f5cbad",
+                    "rows": [
+                        {
+                            "0": "Srinivasan",
+                            "1": "65000.00",
+                            "2": "Comp. Sci."
+                        },
+                        {
+                            "0": "Wu",
+                            "1": "90000.00",
+                            "2": "Finance"
+                        },
+                        {
+                            "0": "Mozart",
+                            "1": "40000.00",
+                            "2": "Music"
+                        },
+                        {
+                            "0": "Einstein",
+                            "1": "95000.00",
+                            "2": "Physics"
+                        },
+                        {
+                            "0": "El Said",
+                            "1": "60000.00",
+                            "2": "History"
+                        },
+                        {
+                            "0": "Gold",
+                            "1": "87000.00",
+                            "2": "Physics"
+                        },
+                        {
+                            "0": "Katz",
+                            "1": "75000.00",
+                            "2": "Comp. Sci."
+                        },
+                        {
+                            "0": "Califieri",
+                            "1": "62000.00",
+                            "2": "History"
+                        },
+                        {
+                            "0": "Singh",
+                            "1": "80000.00",
+                            "2": "Finance"
+                        },
+                        {
+                            "0": "Crick",
+                            "1": "72000.00",
+                            "2": "Biology"
+                        },
+                        {
+                            "0": "Brandt",
+                            "1": "92000.00",
+                            "2": "Comp. Sci."
+                        },
+                        {
+                            "0": "Kim",
+                            "1": "80000.00",
+                            "2": "Elec. Eng."
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "InstName",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Salary",
+                            "field": "1",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "DeptName",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 12 records retrieved in 1.02ms"
+                    },
+                    "totalRowCount": 12,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.17\nSELECT InstName, Salary, DeptName FROM Instructor",
+                    "updatable": false,
+                    "fullTableName": "Instructor"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 13,
+                "end": 15,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "02c6ce12-f972-42bc-fdc3-02c614cd90de"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 59
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "02c6ce12-f972-42bc-fdc3-02c614cd90de",
+                    "rows": [
+                        {
+                            "0": "Zhang"
+                        },
+                        {
+                            "0": "Chavez"
+                        },
+                        {
+                            "0": "Tanaka"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "StudName",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 3 records retrieved in 0.972ms"
+                    },
+                    "totalRowCount": 3,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.18\nSELECT StudName FROM Student\nWHERE TotCredits > 100",
+                    "updatable": false,
+                    "fullTableName": "Student"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 16,
+                "end": 19,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "fa9e7276-19eb-4993-d42c-d51944afcd23"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 80
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "fa9e7276-19eb-4993-d42c-d51944afcd23",
+                    "rows": [
+                        {
+                            "0": "00128",
+                            "1": "Zhang",
+                            "2": "1992-04-18",
+                            "3": "Comp. Sci.",
+                            "4": "102"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "StudID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "StudName",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Birth",
+                            "field": "2",
+                            "dataType": {
+                                "type": 27,
+                                "needsQuotes": true
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "DeptName",
+                            "field": "3",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "TotCredits",
+                            "field": "4",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 0.511ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.19\nSELECT * FROM Student\nWHERE DeptName = 'Comp. Sci.'\nAND TotCredits > 100",
+                    "updatable": true,
+                    "fullTableName": "Student"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 20,
+                "end": 24,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "26cfef7e-2069-46b8-df4c-f18ac49ebf43"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 93
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "26cfef7e-2069-46b8-df4c-f18ac49ebf43",
+                    "rows": [
+                        {
+                            "0": "Painter",
+                            "1": "514",
+                            "2": "10"
+                        },
+                        {
+                            "0": "Watson",
+                            "1": "100",
+                            "2": "30"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Building",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Room",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Capacity",
+                            "field": "2",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 2 records retrieved in 1.07ms"
+                    },
+                    "totalRowCount": 2,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.20\nSELECT * FROM Classroom\nWHERE Capacity > 25\nAND Capacity < 50\nOR Building = 'Painter'",
+                    "updatable": true,
+                    "fullTableName": "Classroom"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 25,
+                "end": 27,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "de076810-108d-4ae9-aff7-9762ca3ffbbf"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 66
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "de076810-108d-4ae9-aff7-9762ca3ffbbf",
+                    "rows": [
+                        {
+                            "0": "Biology"
+                        },
+                        {
+                            "0": "Finance"
+                        },
+                        {
+                            "0": "History"
+                        },
+                        {
+                            "0": "Music"
+                        },
+                        {
+                            "0": "Physics"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "DeptName",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 0.952ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.21\nSELECT DeptName FROM Department\nWHERE Building != 'Taylor'",
+                    "updatable": true,
+                    "fullTableName": "Department"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 28,
+                "end": 31,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "c9ceef01-2e93-4e39-c7a9-5e76951844b9"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 129
+                        },
+                        "contentStart": 7,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "c9ceef01-2e93-4e39-c7a9-5e76951844b9",
+                    "rows": [
+                        {
+                            "0": "CS-101",
+                            "1": 2009,
+                            "2": "C"
+                        },
+                        {
+                            "0": "CS-190",
+                            "1": 2009,
+                            "2": "A"
+                        },
+                        {
+                            "0": "CS-315",
+                            "1": 2010,
+                            "2": "A"
+                        },
+                        {
+                            "0": "CS-347",
+                            "1": 2009,
+                            "2": "A"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "CourseId",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "StudyYear",
+                            "field": "1",
+                            "dataType": {
+                                "type": 1,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 3,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "BOOL",
+                                    "BOOLEAN",
+                                    "INT1"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Grade",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 4 records retrieved in 1.252ms"
+                    },
+                    "totalRowCount": 4,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.22\nSELECT CourseId, StudyYear, Grade FROM Student, Takes\nWhere Student.StudName = 'Shankar'\nAND Student.StudID = Takes.StudID",
+                    "updatable": false,
+                    "fullTableName": ""
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 32,
+                "end": 35,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "90fc04aa-f072-44e0-8bf7-8f4813ca25e1",
+                        "46170ae8-e6ae-4e05-c73f-fa9bab93cb51",
+                        "5eb75b8c-9ace-4465-d07a-deff4d830e22"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 73
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 73,
+                            "length": 67
+                        },
+                        "contentStart": 74,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 140,
+                            "length": 22
+                        },
+                        "contentStart": 141,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "90fc04aa-f072-44e0-8bf7-8f4813ca25e1",
+                    "rows": [
+                        {
+                            "0": "BIO-101",
+                            "1": "Intro. to Biology",
+                            "2": "Biology",
+                            "3": "4"
+                        },
+                        {
+                            "0": "BIO-301",
+                            "1": "Genetics",
+                            "2": "Biology",
+                            "3": "4"
+                        },
+                        {
+                            "0": "BIO-399",
+                            "1": "Computational Biology",
+                            "2": "Biology",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-101",
+                            "1": "Intro. to Computer Science",
+                            "2": "Comp. Sci.",
+                            "3": "4"
+                        },
+                        {
+                            "0": "CS-102",
+                            "1": "Weekly Seminar",
+                            "2": "Comp. Sci.",
+                            "3": "0"
+                        },
+                        {
+                            "0": "CS-103",
+                            "1": "Weekly Seminar",
+                            "2": "Comp. Sci.",
+                            "3": "0"
+                        },
+                        {
+                            "0": "CS-190",
+                            "1": "Game Design",
+                            "2": "Comp. Sci.",
+                            "3": "4"
+                        },
+                        {
+                            "0": "CS-315",
+                            "1": "Robotics",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-319",
+                            "1": "Image Processing",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-347",
+                            "1": "Database System Concepts",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "EE-181",
+                            "1": "Intro. to Digital Systems",
+                            "2": "Elec. Eng.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "FIN-201",
+                            "1": "Investment Banking",
+                            "2": "Finance",
+                            "3": "3"
+                        },
+                        {
+                            "0": "HIS-351",
+                            "1": "World History",
+                            "2": "History",
+                            "3": "3"
+                        },
+                        {
+                            "0": "MU-199",
+                            "1": "Music Video Production",
+                            "2": "Music",
+                            "3": "3"
+                        },
+                        {
+                            "0": "PHY-101",
+                            "1": "Physical Principles",
+                            "2": "Physics",
+                            "3": "4"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "CourseID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Title",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "DeptName",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "Credits",
+                            "field": "3",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 15 records retrieved in 1.019ms"
+                    },
+                    "totalRowCount": 15,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 2,
+                    "sql": "\nSELECT * FROM Course",
+                    "updatable": true,
+                    "fullTableName": "Course"
+                },
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "46170ae8-e6ae-4e05-c73f-fa9bab93cb51",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 2.307ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.23\nINSERT Course VALUES('CS-102', 'Weekly Seminar', 'Comp. Sci.', 0)",
+                    "updatable": false
+                },
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "5eb75b8c-9ace-4465-d07a-deff4d830e22",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 1.847ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nINSERT Course VALUES('CS-103', 'Weekly Seminar', 'Comp. Sci.', 0)",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 36,
+                "end": 38,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "637cd8ab-69cd-4015-ba29-250687135f68",
+                        "83f08885-3a65-46d7-fe73-dd74f5246289"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 74
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 74,
+                            "length": 23
+                        },
+                        "contentStart": 75,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "637cd8ab-69cd-4015-ba29-250687135f68",
+                    "rows": [
+                        {
+                            "0": "BIO-101",
+                            "1": "1",
+                            "2": "Summer",
+                            "3": 2009,
+                            "4": "Painter",
+                            "5": "514",
+                            "6": "B"
+                        },
+                        {
+                            "0": "BIO-301",
+                            "1": "1",
+                            "2": "Summer",
+                            "3": 2010,
+                            "4": "Painter",
+                            "5": "514",
+                            "6": "A"
+                        },
+                        {
+                            "0": "CS-101",
+                            "1": "1",
+                            "2": "Fall",
+                            "3": 2009,
+                            "4": "Packard",
+                            "5": "101",
+                            "6": "H"
+                        },
+                        {
+                            "0": "CS-101",
+                            "1": "1",
+                            "2": "Spring",
+                            "3": 2010,
+                            "4": "Packard",
+                            "5": "101",
+                            "6": "F"
+                        },
+                        {
+                            "0": "CS-102",
+                            "1": "1",
+                            "2": "Fall",
+                            "3": 2009,
+                            "4": null,
+                            "5": null,
+                            "6": null
+                        },
+                        {
+                            "0": "CS-190",
+                            "1": "1",
+                            "2": "Spring",
+                            "3": 2009,
+                            "4": "Taylor",
+                            "5": "3128",
+                            "6": "E"
+                        },
+                        {
+                            "0": "CS-190",
+                            "1": "2",
+                            "2": "Spring",
+                            "3": 2009,
+                            "4": "Taylor",
+                            "5": "3128",
+                            "6": "A"
+                        },
+                        {
+                            "0": "CS-315",
+                            "1": "1",
+                            "2": "Spring",
+                            "3": 2010,
+                            "4": "Watson",
+                            "5": "120",
+                            "6": "D"
+                        },
+                        {
+                            "0": "CS-319",
+                            "1": "1",
+                            "2": "Spring",
+                            "3": 2010,
+                            "4": "Watson",
+                            "5": "100",
+                            "6": "B"
+                        },
+                        {
+                            "0": "CS-319",
+                            "1": "2",
+                            "2": "Spring",
+                            "3": 2010,
+                            "4": "Taylor",
+                            "5": "3128",
+                            "6": "C"
+                        },
+                        {
+                            "0": "CS-347",
+                            "1": "1",
+                            "2": "Fall",
+                            "3": 2009,
+                            "4": "Taylor",
+                            "5": "3128",
+                            "6": "A"
+                        },
+                        {
+                            "0": "EE-181",
+                            "1": "1",
+                            "2": "Spring",
+                            "3": 2009,
+                            "4": "Taylor",
+                            "5": "3128",
+                            "6": "C"
+                        },
+                        {
+                            "0": "FIN-201",
+                            "1": "1",
+                            "2": "Spring",
+                            "3": 2010,
+                            "4": "Packard",
+                            "5": "101",
+                            "6": "B"
+                        },
+                        {
+                            "0": "HIS-351",
+                            "1": "1",
+                            "2": "Spring",
+                            "3": 2010,
+                            "4": "Painter",
+                            "5": "514",
+                            "6": "C"
+                        },
+                        {
+                            "0": "MU-199",
+                            "1": "1",
+                            "2": "Spring",
+                            "3": 2010,
+                            "4": "Packard",
+                            "5": "101",
+                            "6": "D"
+                        },
+                        {
+                            "0": "PHY-101",
+                            "1": "1",
+                            "2": "Fall",
+                            "3": 2009,
+                            "4": "Watson",
+                            "5": "100",
+                            "6": "A"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "CourseID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "SectionID",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Semester",
+                            "field": "2",
+                            "dataType": {
+                                "type": 43,
+                                "needsQuotes": true
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "StudyYear",
+                            "field": "3",
+                            "dataType": {
+                                "type": 1,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 3,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "BOOL",
+                                    "BOOLEAN",
+                                    "INT1"
+                                ]
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Building",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "Room",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "TimeSlotID",
+                            "field": "6",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 16 records retrieved in 0.906ms"
+                    },
+                    "totalRowCount": 16,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Section",
+                    "updatable": true,
+                    "fullTableName": "Section"
+                },
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "83f08885-3a65-46d7-fe73-dd74f5246289",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 3.093ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.24\nINSERT Section VALUES('CS-102', 1, 'Fall', 2009, NULL, NULL, NULL)",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 39,
+                "end": 45,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "f70b1aa3-7558-496e-f975-1b06c06ee825",
+                        "6e5814af-3c88-4d90-d413-8e72e78b41f9"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 219
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 219,
+                            "length": 21
+                        },
+                        "contentStart": 220,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "f70b1aa3-7558-496e-f975-1b06c06ee825",
+                    "rows": [
+                        {
+                            "0": "00128",
+                            "1": "CS-101",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "A"
+                        },
+                        {
+                            "0": "00128",
+                            "1": "CS-102",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": null
+                        },
+                        {
+                            "0": "00128",
+                            "1": "CS-347",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "A-"
+                        },
+                        {
+                            "0": "12345",
+                            "1": "CS-101",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "C"
+                        },
+                        {
+                            "0": "12345",
+                            "1": "CS-102",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": null
+                        },
+                        {
+                            "0": "12345",
+                            "1": "CS-190",
+                            "2": "2",
+                            "3": "Spring",
+                            "4": 2009,
+                            "5": "A"
+                        },
+                        {
+                            "0": "12345",
+                            "1": "CS-315",
+                            "2": "1",
+                            "3": "Spring",
+                            "4": 2010,
+                            "5": "A"
+                        },
+                        {
+                            "0": "12345",
+                            "1": "CS-347",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "A"
+                        },
+                        {
+                            "0": "19991",
+                            "1": "HIS-351",
+                            "2": "1",
+                            "3": "Spring",
+                            "4": 2010,
+                            "5": "B"
+                        },
+                        {
+                            "0": "23121",
+                            "1": "FIN-201",
+                            "2": "1",
+                            "3": "Spring",
+                            "4": 2010,
+                            "5": "C+"
+                        },
+                        {
+                            "0": "44553",
+                            "1": "PHY-101",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "B-"
+                        },
+                        {
+                            "0": "45678",
+                            "1": "CS-101",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "F"
+                        },
+                        {
+                            "0": "45678",
+                            "1": "CS-101",
+                            "2": "1",
+                            "3": "Spring",
+                            "4": 2010,
+                            "5": "B+"
+                        },
+                        {
+                            "0": "45678",
+                            "1": "CS-319",
+                            "2": "1",
+                            "3": "Spring",
+                            "4": 2010,
+                            "5": "B"
+                        },
+                        {
+                            "0": "54321",
+                            "1": "CS-101",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "A-"
+                        },
+                        {
+                            "0": "54321",
+                            "1": "CS-102",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": null
+                        },
+                        {
+                            "0": "54321",
+                            "1": "CS-190",
+                            "2": "2",
+                            "3": "Spring",
+                            "4": 2009,
+                            "5": "B+"
+                        },
+                        {
+                            "0": "55739",
+                            "1": "MU-199",
+                            "2": "1",
+                            "3": "Spring",
+                            "4": 2010,
+                            "5": "A-"
+                        },
+                        {
+                            "0": "76543",
+                            "1": "CS-101",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "A"
+                        },
+                        {
+                            "0": "76543",
+                            "1": "CS-102",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": null
+                        },
+                        {
+                            "0": "76543",
+                            "1": "CS-319",
+                            "2": "2",
+                            "3": "Spring",
+                            "4": 2010,
+                            "5": "A"
+                        },
+                        {
+                            "0": "76653",
+                            "1": "EE-181",
+                            "2": "1",
+                            "3": "Spring",
+                            "4": 2009,
+                            "5": "C"
+                        },
+                        {
+                            "0": "98765",
+                            "1": "CS-101",
+                            "2": "1",
+                            "3": "Fall",
+                            "4": 2009,
+                            "5": "C-"
+                        },
+                        {
+                            "0": "98765",
+                            "1": "CS-315",
+                            "2": "1",
+                            "3": "Spring",
+                            "4": 2010,
+                            "5": "B"
+                        },
+                        {
+                            "0": "98988",
+                            "1": "BIO-101",
+                            "2": "1",
+                            "3": "Summer",
+                            "4": 2009,
+                            "5": "A"
+                        },
+                        {
+                            "0": "98988",
+                            "1": "BIO-301",
+                            "2": "1",
+                            "3": "Summer",
+                            "4": 2010,
+                            "5": null
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "StudID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "CourseID",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "SectionID",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Semester",
+                            "field": "3",
+                            "dataType": {
+                                "type": 43,
+                                "needsQuotes": true
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "StudyYear",
+                            "field": "4",
+                            "dataType": {
+                                "type": 1,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 3,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "BOOL",
+                                    "BOOLEAN",
+                                    "INT1"
+                                ]
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Grade",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 26 records retrieved in 0.885ms"
+                    },
+                    "totalRowCount": 26,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Takes",
+                    "updatable": true,
+                    "fullTableName": "Takes"
+                },
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "6e5814af-3c88-4d90-d413-8e72e78b41f9",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 4 rows affected in 2.415ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.25\nINSERT INTO Takes\nSELECT Student.StudId, Section.CourseID, Section.SectionID, Section.Semester, Section.StudyYear, NUll\nFROM Student, Section\nWHERE Student.DeptName = 'Comp. Sci.'\nAND Section.CourseID = 'CS-102'",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 46,
+                "end": 50,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "3b82f165-3f51-4f2a-8e4c-aa512c3870cf",
+                        "99bb3c46-fb7d-4985-bfe1-352f00cb749b"
+                    ]
+                },
+                "currentHeight": 352,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 75
+                        },
+                        "contentStart": 8,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 75,
+                            "length": 21
+                        },
+                        "contentStart": 76,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "3b82f165-3f51-4f2a-8e4c-aa512c3870cf",
+                    "rows": [
+                        {
+                            "0": "BIO-101",
+                            "1": "Intro. to Biology",
+                            "2": "Biology",
+                            "3": "4"
+                        },
+                        {
+                            "0": "BIO-301",
+                            "1": "Genetics",
+                            "2": "Biology",
+                            "3": "4"
+                        },
+                        {
+                            "0": "BIO-399",
+                            "1": "Computational Biology",
+                            "2": "Biology",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-101",
+                            "1": "Intro. to Computer Science",
+                            "2": "Comp. Sci.",
+                            "3": "4"
+                        },
+                        {
+                            "0": "CS-190",
+                            "1": "Game Design",
+                            "2": "Comp. Sci.",
+                            "3": "4"
+                        },
+                        {
+                            "0": "CS-315",
+                            "1": "Robotics",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-319",
+                            "1": "Image Processing",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "CS-347",
+                            "1": "Database System Concepts",
+                            "2": "Comp. Sci.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "EE-181",
+                            "1": "Intro. to Digital Systems",
+                            "2": "Elec. Eng.",
+                            "3": "3"
+                        },
+                        {
+                            "0": "FIN-201",
+                            "1": "Investment Banking",
+                            "2": "Finance",
+                            "3": "3"
+                        },
+                        {
+                            "0": "HIS-351",
+                            "1": "World History",
+                            "2": "History",
+                            "3": "3"
+                        },
+                        {
+                            "0": "MU-199",
+                            "1": "Music Video Production",
+                            "2": "Music",
+                            "3": "3"
+                        },
+                        {
+                            "0": "PHY-101",
+                            "1": "Physical Principles",
+                            "2": "Physics",
+                            "3": "4"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "CourseID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Title",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "DeptName",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "Credits",
+                            "field": "3",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 13 records retrieved in 0.779ms"
+                    },
+                    "totalRowCount": 13,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Course",
+                    "updatable": true,
+                    "fullTableName": "Course"
+                },
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "99bb3c46-fb7d-4985-bfe1-352f00cb749b",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 2 rows affected in 13.087ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.26\nDELETE FROM Course\nWHERE CourseID = 'CS-102'\nOR CourseID = 'CS-103'",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 51,
+                "end": 54,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "26ac9a11-3550-47ad-a16a-c959a2ec43c1",
+                        "bac52b04-72cd-4f1a-8e23-724ba75ec115"
+                    ]
+                },
+                "currentHeight": 245,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 76
+                        },
+                        "contentStart": 7,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 76,
+                            "length": 26
+                        },
+                        "contentStart": 77,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "26ac9a11-3550-47ad-a16a-c959a2ec43c1",
+                    "rows": [
+                        {
+                            "0": "Biology",
+                            "1": "Watson",
+                            "2": "90000.00"
+                        },
+                        {
+                            "0": "Comp. Sci.",
+                            "1": "Taylor",
+                            "2": "100000.00"
+                        },
+                        {
+                            "0": "Elec. Eng.",
+                            "1": "Taylor",
+                            "2": "85000.00"
+                        },
+                        {
+                            "0": "Finance",
+                            "1": "Taylor",
+                            "2": "120000.00"
+                        },
+                        {
+                            "0": "History",
+                            "1": "Painter",
+                            "2": "50000.00"
+                        },
+                        {
+                            "0": "Music",
+                            "1": "Packard",
+                            "2": "80000.00"
+                        },
+                        {
+                            "0": "Physics",
+                            "1": "Watson",
+                            "2": "70000.00"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "DeptName",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Building",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "Budget",
+                            "field": "2",
+                            "dataType": {
+                                "type": 10,
+                                "flags": [
+                                    "UNSIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 65,
+                                "numericScale": 30,
+                                "parameterFormatType": "TwoOrOneOrZero",
+                                "synonyms": [
+                                    "FIXED",
+                                    "NUMERIC",
+                                    "DEC"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 7 records retrieved in 0.62ms"
+                    },
+                    "totalRowCount": 7,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Department",
+                    "updatable": true,
+                    "fullTableName": "Department"
+                },
+                {
+                    "tabId": "84e9a7a4-3292-4540-e535-61bee04facac",
+                    "resultId": "bac52b04-72cd-4f1a-8e23-724ba75ec115",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 4.202ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "# 2.27\nUPDATE Department SET Building = 'Taylor'\nWHERE DeptName = 'Finance'",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 55,
+                "end": 55,
+                "language": "mysql",
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 0
+                        },
+                        "contentStart": 0,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}
