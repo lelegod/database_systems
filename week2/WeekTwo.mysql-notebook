@@ -1,0 +1,1057 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "DB Notebook",
+    "content": "\\about\nCREATE DATABASE WeekTwo;\nUSE WeekTwo;\nCREATE TABLE Person(\nDriverID VARCHAR(10),\nDriverName VARCHAR(20),\nAddress VARCHAR(40),\nPRIMARY KEY(DriverID)\n);\nCREATE TABLE Car(\nLicense VARCHAR(10),\nModel VARCHAR(30),\nProdYear INT,\nPRIMARY KEY(License)\n);\nCREATE TABLE Accident(\nReportNumber VARCHAR(10),\nAccDate VARCHAR(20),\nLocation VARCHAR(20),\nPRIMARY KEY(ReportNumber)\n);\nCREATE TABLE Owns(\nDriverID VARCHAR(10),\nLicense VARCHAR(10),\nPRIMARY KEY(DriverID, License),\nFOREIGN KEY(DriverID) REFERENCES Person(DriverID),\nFOREIGN KEY(License) REFERENCES Car(License)\n);\nCREATE TABLE Participants(\nReportNumber VARCHAR(10),\nLicense VARCHAR(10),\nDriverID VARCHAR(10),\nDamageAmount INT,\nPRIMARY KEY(ReportNumber, License),\nFOREIGN KEY(ReportNumber) REFERENCES Accident(ReportNumber),\nFOREIGN KEY(License) REFERENCES Car(License),\nFOREIGN KEY(DriverID) REFERENCES Person(DriverID)\n);\nINSERT Person VALUES(31262549, 'Hans Hansen', 'Jernbane Alle 74, 2720 Vanlose');\nSELECT * FROM Person\nINSERT Car VALUES('JW46898', 'Honda Accord Aut. 2.0', 2001);\nSELECT * FROM Car\nINSERT Accident VALUES('3004000121', '2015-06-18', '2605 Brondby');\nSELECT * FROM Accident\nINSERT Owns VALUES(31262549, 'JW46898');\nSELECT * FROM Owns\nINSERT Participants VALUES('3004000121', 'JW46898', 31262549, 6800);\nSELECT * FROM Participants\n\n\n",
+    "options": {
+        "tabSize": 4,
+        "indentSize": 4,
+        "insertSpaces": true,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": {
+        "cursorState": [
+            {
+                "inSelectionMode": false,
+                "selectionStart": {
+                    "lineNumber": 48,
+                    "column": 27
+                },
+                "position": {
+                    "lineNumber": 48,
+                    "column": 27
+                }
+            }
+        ],
+        "viewState": {
+            "scrollLeft": 0,
+            "firstPosition": {
+                "lineNumber": 43,
+                "column": 1
+            },
+            "firstPositionDeltaTop": 25
+        },
+        "contributionsState": {
+            "editor.contrib.folding": {},
+            "editor.contrib.wordHighlighter": true
+        }
+    },
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 1,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "content": "Welcome to the MySQL Shell - DB Notebook.\n\nPress Cmd+Enter to execute the code block.\n\nExecute \\sql to switch to SQL, \\js to JavaScript and \\ts to TypeScript mode.\nExecute \\help or \\? for help;",
+                            "language": "ansi"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 6
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 2,
+                "end": 3,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "3ecf64f8-3b26-46d2-d586-f971807b13ac",
+                            "content": "OK, 1 row affected in 0.931ms"
+                        },
+                        {
+                            "type": 2,
+                            "index": 1,
+                            "resultId": "c0b697d2-f9c1-442d-e559-8ac74337b558",
+                            "content": "OK, 0 records retrieved in 0.824ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 24
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 24,
+                            "length": 13
+                        },
+                        "contentStart": 25,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 4,
+                "end": 9,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "9ece67d4-6e7c-480c-9b20-cccfc0dba19e",
+                            "content": "OK, 0 records retrieved in 4.37ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 112
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 10,
+                "end": 15,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "c0d53bc3-61a3-449d-c16d-79af0ec2b7a6",
+                            "content": "OK, 0 records retrieved in 4.118ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 95
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 16,
+                "end": 21,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "7774ddd3-b437-4dc6-94b3-d1ae71b9a612",
+                            "content": "OK, 0 records retrieved in 4.045ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 120
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 22,
+                "end": 28,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "f5f02127-9084-4f41-b76a-61b1f540b966",
+                            "content": "OK, 0 records retrieved in 6.741ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 192
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 29,
+                "end": 38,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "index": 0,
+                            "resultId": "f8fa1700-169f-4ae3-d879-f8c2558dedea",
+                            "content": "OK, 0 records retrieved in 6.103ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 309
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 39,
+                "end": 40,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "d25b2455-c5a2-4f1d-f233-bcbd196af78c",
+                        "36609fbf-773a-4322-9c84-69f3412a8dfc"
+                    ]
+                },
+                "currentHeight": 36,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 80
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 80,
+                            "length": 21
+                        },
+                        "contentStart": 81,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "d25b2455-c5a2-4f1d-f233-bcbd196af78c",
+                    "rows": [
+                        {
+                            "0": "31262549",
+                            "1": "Hans Hansen",
+                            "2": "Jernbane Alle 74, 2720 Vanlose"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "DriverID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "DriverName",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "Address",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 0.993ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Person",
+                    "updatable": true,
+                    "fullTableName": "Person"
+                },
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "36609fbf-773a-4322-9c84-69f3412a8dfc",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 1.491ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "INSERT Person VALUES(31262549, 'Hans Hansen', 'Jernbane Alle 74, 2720 Vanlose')",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 41,
+                "end": 42,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "544385c2-6fb1-4a2f-b830-e5b946fe7803",
+                        "3e60933b-4d79-4db9-ffaf-7c87b2dfa376"
+                    ]
+                },
+                "currentHeight": 113,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 60
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 60,
+                            "length": 18
+                        },
+                        "contentStart": 61,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "544385c2-6fb1-4a2f-b830-e5b946fe7803",
+                    "rows": [
+                        {
+                            "0": "JW46898",
+                            "1": "Honda Accord Aut. 2.0",
+                            "2": 2001
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "License",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "Model",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "ProdYear",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 0.622ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Car",
+                    "updatable": true,
+                    "fullTableName": "Car"
+                },
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "3e60933b-4d79-4db9-ffaf-7c87b2dfa376",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 1.355ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "INSERT Car VALUES('JW46898', 'Honda Accord Aut. 2.0', 2001)",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 43,
+                "end": 44,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "b19cb05f-9271-4ba7-91ff-f263ad725af9",
+                        "39756ec1-8413-4519-dba8-d549c32d38d2"
+                    ]
+                },
+                "currentHeight": 113,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 67
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 67,
+                            "length": 23
+                        },
+                        "contentStart": 68,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "b19cb05f-9271-4ba7-91ff-f263ad725af9",
+                    "rows": [
+                        {
+                            "0": "3004000121",
+                            "1": "2015-06-18",
+                            "2": "2605 Brondby"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "ReportNumber",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "AccDate",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "Location",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 0.9ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Accident",
+                    "updatable": true,
+                    "fullTableName": "Accident"
+                },
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "39756ec1-8413-4519-dba8-d549c32d38d2",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 2.218ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "INSERT Accident VALUES('3004000121', '2015-06-18', '2605 Brondby')",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 45,
+                "end": 46,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "128bf235-86a8-45f3-b9dc-414ba87e4c4f",
+                        "84e7d9d2-372c-4b91-b0b0-971d72321c28"
+                    ]
+                },
+                "currentHeight": 113,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 40
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 40,
+                            "length": 19
+                        },
+                        "contentStart": 41,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "128bf235-86a8-45f3-b9dc-414ba87e4c4f",
+                    "rows": [
+                        {
+                            "0": "31262549",
+                            "1": "JW46898"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "DriverID",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "License",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 0.936ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Owns",
+                    "updatable": true,
+                    "fullTableName": "Owns"
+                },
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "84e7d9d2-372c-4b91-b0b0-971d72321c28",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 1.416ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "INSERT Owns VALUES(31262549, 'JW46898')",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 47,
+                "end": 48,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "78f8f500-ae9e-4a0c-bd63-b667b922c453",
+                        "381c3b0d-815b-4094-949e-e4e8e923cf75"
+                    ]
+                },
+                "currentHeight": 113,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 68
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 68,
+                            "length": 27
+                        },
+                        "contentStart": 69,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "78f8f500-ae9e-4a0c-bd63-b667b922c453",
+                    "rows": [
+                        {
+                            "0": "3004000121",
+                            "1": "JW46898",
+                            "2": "31262549",
+                            "3": 6800
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "ReportNumber",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "License",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": true,
+                            "nullable": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "title": "DriverID",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        },
+                        {
+                            "title": "DamageAmount",
+                            "field": "3",
+                            "dataType": {
+                                "type": 4,
+                                "flags": [
+                                    "SIGNED",
+                                    "ZEROFILL"
+                                ],
+                                "numericPrecision": 10,
+                                "parameterFormatType": "OneOrZero",
+                                "synonyms": [
+                                    "INTEGER",
+                                    "INT4"
+                                ]
+                            },
+                            "inPK": false,
+                            "nullable": true,
+                            "autoIncrement": false,
+                            "default": "NULL"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 0.789ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nSELECT * FROM Participants",
+                    "updatable": true,
+                    "fullTableName": "Participants"
+                },
+                {
+                    "tabId": "1061c9e7-b562-488d-9383-6ac3f169c3cf",
+                    "resultId": "381c3b0d-815b-4094-949e-e4e8e923cf75",
+                    "rows": [],
+                    "columns": [
+                        {
+                            "title": "*",
+                            "field": "0",
+                            "dataType": {
+                                "type": 0
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 row affected in 2.894ms"
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "INSERT Participants VALUES('3004000121', 'JW46898', 31262549, 6800)",
+                    "updatable": false
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 49,
+                "end": 49,
+                "language": "mysql",
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 0
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 50,
+                "end": 50,
+                "language": "mysql",
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 0
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 51,
+                "end": 51,
+                "language": "mysql",
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 0
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}
