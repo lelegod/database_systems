@@ -69,6 +69,29 @@ An index is a separate, smaller structure that lets the DBMS jump directly to th
 - Supports both point queries and range queries efficiently
 - Default index type in MariaDB/MySQL (InnoDB = B+ tree)
 
+### B+ Tree Node Capacity (order n)
+
+| Node type | Min keys | Max keys |
+|-----------|---------|---------|
+| Internal node | ⌈n/2⌉ − 1 | n − 1 |
+| Leaf node | ⌈(n−1)/2⌉ | n − 1 |
+| Root (special) | 1 | n − 1 |
+
+*n = order = maximum number of pointers in an internal node*
+
+**Example (n = 6):** internal nodes hold 3–5 keys; leaf nodes hold 3–5 keys.
+
+### B+ Tree Search
+
+**Point query** (find key K):
+1. Start at root — find the child pointer range where K falls
+2. Follow pointer down to next level; repeat
+3. At leaf: follow record pointer to data file
+
+**Range query** (find all keys between K1 and K2):
+1. Point-search for K1 to reach the correct leaf
+2. Follow the leaf-level linked list rightward until K > K2
+
 ---
 
 ## Hashing
@@ -79,9 +102,26 @@ An index is a separate, smaller structure that lets the DBMS jump directly to th
 | **Bucket** | A block in the hash file |
 | **Collision** | Two keys map to the same bucket |
 
-**Example:** h(K) = K % 3 + 1 → record with key 15151 goes to block 15151 % 3 + 1 = 2
+**Example:** h(K) = K % 4 → StudID 70557 goes to bucket 70557 % 4 = 1
 
-**Advantages:** O(1) point lookups.  
+**Applying a hash function manually:**
+```
+h(K) = K % n_buckets       (or K % n_buckets + 1 if buckets are 1-indexed)
+
+StudID  h(K) = K % 4    Bucket
+10101   10101 % 4 = 1   bucket 1
+12121   12121 % 4 = 1   bucket 1  ← collision
+15151   15151 % 4 = 3   bucket 3
+22222   22222 % 4 = 2   bucket 2
+```
+
+**Overflow buckets:** If a bucket is full and a new record hashes to it, the record goes in an overflow bucket chained to the original. This slows lookup.
+
+**Hash file vs Hash index:**
+- **Hash file (hashed data file):** The actual records are stored in buckets determined by the hash. No separate index file.
+- **Hash index:** The index entries (search key + pointer) are hashed into index buckets; the data file is stored separately and is unordered.
+
+**Advantages:** O(1) average point lookups.  
 **Disadvantages:** Range queries are inefficient; overflow handling needed.
 
 **Static hashing:** fixed number of buckets — can cause overflow as data grows.  

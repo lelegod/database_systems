@@ -72,6 +72,17 @@ SHOW INDEX FROM Instructor;
 DROP INDEX DeptIndex ON Instructor;
 ```
 
+## Hash Function in SQL
+
+```sql
+-- Compute which bucket a key would go into (h(K) = K % 4)
+SELECT StudID, StudID % 4 AS bucket FROM Student;
+SELECT StudID, MOD(StudID, 4) AS bucket FROM Student;   -- same thing
+
+-- Find all records that hash to bucket 1
+SELECT * FROM Student WHERE StudID % 4 = 1;
+```
+
 ## Index Types Summary
 
 | Type | Dense/Sparse | Primary/Secondary |

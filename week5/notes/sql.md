@@ -11,6 +11,7 @@ DELIMITER ;
 ## Functions
 
 ```sql
+-- Returns DECIMAL
 DELIMITER //
 CREATE FUNCTION func_name(param1 INT, param2 VARCHAR(50))
 RETURNS DECIMAL(10,2)
@@ -22,8 +23,29 @@ BEGIN
 END //
 DELIMITER ;
 
--- Call in a query:
+-- Returns INT (SELECT ... INTO variable inside function)
+DELIMITER //
+CREATE FUNCTION BuildingCapacityFct(vBuilding VARCHAR(20))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE vMaxCapacity INT;
+    SELECT SUM(Capacity) INTO vMaxCapacity
+    FROM Classroom WHERE Building = vBuilding;
+    RETURN vMaxCapacity;
+END //
+DELIMITER ;
+
+-- Returns BOOLEAN, single-expression (no BEGIN/END needed)
+DELIMITER //
+CREATE FUNCTION IsExpensive(vSalary DECIMAL(10,2))
+RETURNS BOOLEAN DETERMINISTIC
+RETURN vSalary > 90000 //
+DELIMITER ;
+
+-- Call in a query / WHERE clause:
 SELECT func_name(salary, name) FROM Instructor;
+SELECT * FROM Classroom WHERE Capacity > BuildingCapacityFct('Watson');
 
 -- Drop:
 DROP FUNCTION func_name;
@@ -52,6 +74,7 @@ DROP PROCEDURE proc_name;
 ## Triggers
 
 ```sql
+-- Trigger that modifies NEW value
 DELIMITER //
 CREATE TRIGGER check_salary
 BEFORE INSERT ON Instructor
@@ -63,12 +86,35 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Trigger that REJECTS an invalid insert using SIGNAL
+DELIMITER //
+CREATE TRIGGER TimeSlot_Before_Insert
+BEFORE INSERT ON TimeSlot
+FOR EACH ROW
+BEGIN
+    IF NEW.EndTime <= NEW.StartTime THEN
+        SIGNAL SQLSTATE 'HY000'
+            SET MYSQL_ERRNO = 1525,
+                MESSAGE_TEXT = 'EndTime is equal to or before StartTime';
+    END IF;
+END //
+DELIMITER ;
+
 -- Show triggers:
 SHOW TRIGGERS;
 
 -- Drop:
 DROP TRIGGER check_salary;
 ```
+
+### SIGNAL — raise an error inside any stored program
+
+```sql
+SIGNAL SQLSTATE 'HY000'
+    SET MYSQL_ERRNO = 1525,
+        MESSAGE_TEXT = 'Your custom error message here';
+```
+Use `SIGNAL` inside triggers, procedures, or functions to abort the operation and return an error to the caller.
 
 ## Control Flow (inside BEGIN...END)
 
@@ -122,7 +168,28 @@ ROLLBACK;
 ## Events (scheduled SQL)
 
 ```sql
+-- Enable the event scheduler
+SET GLOBAL event_scheduler = 1;
+
+-- One-time cleanup
 CREATE EVENT daily_cleanup
 ON SCHEDULE EVERY 1 DAY
 DO DELETE FROM Log WHERE created_at < NOW() - INTERVAL 30 DAY;
+
+-- Random insert every 10 seconds
+CREATE EVENT RollBall
+ON SCHEDULE EVERY 10 SECOND
+DO INSERT BallRolls (LuckyNo) VALUES (FLOOR(37 * RAND()));
+```
+
+## AUTO_INCREMENT
+
+```sql
+CREATE TABLE BallRolls (
+    RollNo  INTEGER AUTO_INCREMENT PRIMARY KEY,
+    LuckyNo INTEGER
+);
+-- RollNo is assigned automatically: 1, 2, 3, …
+-- INSERT only needs to provide LuckyNo:
+INSERT BallRolls (LuckyNo) VALUES (FLOOR(37 * RAND()));
 ```

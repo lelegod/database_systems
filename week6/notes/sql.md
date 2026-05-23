@@ -84,6 +84,30 @@ CREATE TABLE Section (
 );
 ```
 
+## Relation Schema Text Notation (exam style)
+
+On exams you often write schemas in shorthand, not SQL. Underline the primary key attributes.
+
+```
+Clients(CID, Firstname, Lastname, Street, SNo, Birth)
+         ---
+
+Cars(Plate, Model, Color, PYear, CID, StartDate)
+     -----                        ^^^-- FK to Clients
+
+Transaction(TransactionNo, ATM_ID, Amount)
+            ------------------------------ composite PK
+            ATM_ID is also FK to ATM(ATM_ID)
+```
+
+**Rule:** If a many-to-one relationship has its own attribute (e.g., StartDate), put that attribute AND the FK in the "many" table — no separate relationship table needed.
+
+```
+-- ER: Client —[Owns (StartDate)]→ Car  (many-to-one)
+-- Result: StartDate and CID (FK) go in the Cars table
+Cars(Plate, Model, Color, PYear, CID, StartDate)
+```
+
 ## Quick Reference: Which table gets the FK?
 
 | Relationship | FK placement |

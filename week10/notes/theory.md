@@ -98,6 +98,75 @@ R is in 4NF if for every non-trivial **multivalued dependency** X →→ Y, X is
 
 ---
 
+## How to Identify FDs (exam skill)
+
+For each non-key attribute, ask: *"What is the minimal set of attributes that logically determines this value?"*
+
+**Example schema:** `ClientSales(ClientNo, SalesRepNo, CName, SName, Date)`
+
+| FD | Reasoning |
+|----|-----------|
+| ClientNo → CName | A client number uniquely determines the client's name |
+| SalesRepNo → SName | A sales rep number uniquely determines the rep's name |
+| ClientNo, SalesRepNo → Date | The date of a sale is determined by which client + which rep |
+
+- `CName` depends only on `ClientNo` — **partial dependency** → violates 2NF
+- `SName` depends only on `SalesRepNo` — **partial dependency** → violates 2NF
+
+---
+
+## Attribute Closure (finding candidate keys)
+
+The closure of a set X under FD set F, written X+, is all attributes determined by X.
+
+**Algorithm:**
+1. Start: result = X
+2. For each FD A → B in F: if A ⊆ result, add B to result
+3. Repeat step 2 until no change
+
+**Example:** F = {A → B, B → C, A → D}, find {A}+
+- Start: {A}
+- A → B: {A, B}
+- B → C: {A, B, C}
+- A → D: {A, B, C, D}
+- {A}+ = {A, B, C, D} → A is a superkey (and candidate key if no subset also covers all)
+
+---
+
+## BCNF — Worked Example
+
+**Schema:** `Section(CourseID, SectionID, Semester, StudyYear, Building, Room, TimeSlotID)`
+
+**FD:** `Building, Room → TimeSlotID` — left side is not a superkey → **BCNF violation**
+
+**Decompose:**
+```
+RoomSlot(Building, Room, TimeSlotID)      -- Building,Room is the PK here
+Section(CourseID, SectionID, Semester, StudyYear, Building, Room)
+```
+
+**BCNF check:** For every non-trivial FD X → Y, X must be a superkey. If not, decompose.
+
+---
+
+## Armstrong's Rules — Step-by-Step Application
+
+Given FDs: `{A → B, B → C, A → D, D → E}`
+
+```
+1. A → B                (given)
+2. B → C                (given)
+3. A → C                (transitivity: 1 + 2)
+4. A → D                (given)
+5. D → E                (given)
+6. A → E                (transitivity: 4 + 5)
+7. A → BC               (union: 1 + 2, since A→B and A→C)
+8. A → BCDE             (union of all derived: A→B, A→C, A→D, A→E)
+   → A is a superkey if BCDE covers all attributes
+```
+
+---
+
 ## Normalization Process
 
 1. Start with a "bad" (redundant) table

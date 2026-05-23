@@ -32,6 +32,28 @@
 | G_{AVG(Salary)}(Instructor) | `SELECT AVG(Salary) FROM Instructor` |
 | DeptName G_{MAX(Salary)}(Instructor) | `SELECT DeptName, MAX(Salary) FROM Instructor GROUP BY DeptName` |
 
+## Writing RA Expressions (exam style)
+
+```
+-- Point query:
+σ_{Profession='Painter'}(Employee)
+
+-- Projection + selection:
+Π_{Eid, Ename}(σ_{Profession='Carpenter' ∧ Rate<100}(Employee))
+
+-- Join then project:
+Π_{Pid, Pname, Eid, Ename, Hours, Rate}(Employee ⋈ Staffing ⋈ Projects)
+
+-- Aggregation (all rows):
+G_{MAX(Salary), AVG(Salary)}(Instructor)
+
+-- Aggregation with grouping:
+DeptName G_{MAX(Salary), AVG(Salary)}(Instructor)
+
+-- Selection + aggregation with grouping:
+CourseID G_{COUNT(StudID)}(σ_{StudyYear=2009 ∧ Semester='Fall'}(Takes))
+```
+
 ## Complete Query Translation Examples
 
 ```sql
@@ -56,15 +78,54 @@ EXCEPT
 SELECT InstName, CourseID
 FROM   Instructor NATURAL JOIN Teaches;
 
+-- RA: Π_{Pid, Pname, Eid, Ename, Hours, Rate}(Employee ⋈ Staffing ⋈ Projects)
+SELECT Pid, Pname, Eid, Ename, Hours, Rate
+FROM Employee NATURAL JOIN Staffing NATURAL JOIN Projects;
+
 -- RA: Π_{StudName, InstID}(Student ⟕ Advisor)
 SELECT StudName, InstID
 FROM   Student NATURAL LEFT OUTER JOIN Advisor;
+
+-- RA: CourseID G_{COUNT(StudID)}(σ_{StudyYear=2009 ∧ Semester='Fall'}(Takes))
+SELECT CourseID, COUNT(StudID)
+FROM   Takes
+WHERE  StudyYear = 2009 AND Semester = 'Fall'
+GROUP BY CourseID;
 
 -- RA: DeptName G_{MAX(Salary), AVG(Salary)}(Instructor)
 SELECT DeptName, MAX(Salary), AVG(Salary)
 FROM   Instructor
 GROUP BY DeptName;
 ```
+
+## Domain Calculus
+
+Domain Calculus is **declarative** (says *what*, not *how*). Used as the basis for QBE.
+
+**Form:** `{ <x1, x2, …, xn> | P(x1, x2, …, xn) }`
+
+```
+-- SQL: SELECT B, A FROM R WHERE D > 100
+{ <b, a> | ∃c,d( <a,b,c,d> ∈ R ∧ d > 100 ) }
+
+-- SQL: SELECT Eid, Ename FROM Employee WHERE Profession = 'Painter'
+{ <eid, ename> | ∃prof, rate( <eid, ename, prof, rate> ∈ Employee
+                               ∧ prof = 'Painter' ) }
+
+-- SQL: SELECT Eid FROM Employee WHERE Profession = 'Carpenter' AND Rate < 100
+{ <eid> | ∃ename, rate( <eid, ename, 'Carpenter', rate> ∈ Employee
+                         ∧ rate < 100 ) }
+```
+
+**Operators inside P:**
+| Symbol | Meaning |
+|--------|---------|
+| `∧` | AND |
+| `∨` | OR |
+| `¬` | NOT |
+| `∃x(P(x))` | There exists x where P(x) is true |
+| `∀x(P(x))` | For all x, P(x) is true |
+| `xi op c` | Comparison (=, ≠, <, ≤, >, ≥) |
 
 ## Full SQL Query Semantics
 
