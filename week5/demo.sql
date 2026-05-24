@@ -1,0 +1,109 @@
+USE universityDB;
+
+
+CREATE FUNCTION Age (vDate DATE) RETURNS Integer
+RETURN TIMESTAMPDIFF(YEAR, vDate, CURDATE());
+CREATE FUNCTION LeapYear (vYear YEAR) RETURNS BOOLEAN
+RETURN (vYear % 4 = 0) AND (vYear % 100 != 0) OR (vYear % 400 = 0);
+SELECT StudID, StudName, Birth, Age(Birth) AS Age, LeapYear(YEAR(Birth)) AS LeapYear
+FROM Student;
+
+CREATE TABLE InstLog LIKE Instructor;
+ALTER TABLE InstLog ADD LogTime TIMESTAMP(6);
+
+DELIMITER //
+CREATE TRIGGER Instructor_After_Insert
+AFTER INSERT ON Instructor FOR EACH ROW
+BEGIN
+INSERT InstLog VALUES (New.InstID, New.InstName, New.DeptName, New.Salary, NOW(6));
+END //
+DELIMITER ;
+SELECT * FROM Instructor;
+SELECT * FROM InstLog;
+INSERT Instructor VALUES
+('11001', 'Valdez', 'Comp. Sci.', 36000),
+('11002', 'Koerver', 'Comp. Sci.', 36000);
+SELECT * FROM Instructor;
+SELECT * FROM InstLog;
+
+CREATE TABLE InstOld LIKE Instructor;
+DELIMITER //
+CREATE PROCEDURE InstBackup ()
+BEGIN
+DELETE FROM InstOld;
+INSERT InstOld SELECT * FROM Instructor;
+DELETE FROM InstLog;
+END //
+DELIMITER ;
+SELECT * FROM Instructor;
+SELECT * FROM InstOld;
+SELECT * FROM InstLog;
+SET SQL_SAFE_UPDATES = 0;
+CALL InstBackup;
+SET SQL_SAFE_UPDATES = 1;
+SELECT * FROM Instructor;
+SELECT * FROM InstOld;
+SELECT * FROM InstLog;
+
+DROP TABLE IF EXISTS InstOld;
+DROP TABLE IF EXISTS InstLog;
+CREATE TABLE InstOld LIKE Instructor;
+CREATE TABLE InstLog LIKE Instructor;
+ALTER TABLE InstLog ADD LogTime TIMESTAMP(6);
+DELIMITER //
+CREATE PROCEDURE InstBackup1 ()
+BEGIN
+	DECLARE vSQLSTATE CHAR(5) DEFAULT '00000';
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+		BEGIN
+			GET DIAGNOSTICS CONDITION 1
+            vSQLSTATE = RETURNED_SQLSTATE;
+        END;
+	START TRANSACTION;
+	DELETE FROM InstOld;
+	INSERT InstOld SELECT * FROM Instructor;
+	DELETE FROM InstLog;
+    SELECT vSQLSTATE;
+    IF vSQLSTATE = '00000' THEN COMMIT;
+		ELSE ROLLBACK;
+	END IF;
+END //
+DELIMITER ;
+INSERT Instructor VALUES ('10000', 'Hansen', 'Comp. Sci.', 50000);
+SELECT * FROM InstLog;
+SET SQL_SAFE_UPDATES = 0;
+CALL InstBackup1;
+SELECT * FROM Instructor;
+SELECT * FROM InstOld;
+SELECT * FROM InstLog;
+DROP TABLE InstLog;
+CALL InstBackup1;
+
+CREATE TABLE InstLog LIKE Instructor;
+ALTER TABLE InstLog ADD LogTime TIMESTAMP(6);
+CREATE EVENT InstEvent
+ON SCHEDULE EVERY 1 WEEK
+STARTS '2016-02-21 00:00:01'
+DO CALL InstBackup;
+SET GLOBAL event_scheduler = 1;
+SHOW VARIABLES LIKE 'event_scheduler';
+SHOW EVENTS;
+
+SET GLOBAL event_scheduler = 1;
+
+CREATE TABLE DiceRolls (
+RollNo INTEGER AUTO_INCREMENT,
+DiceEyes INTEGER,
+PRIMARY KEY (RollNo)
+);
+
+CREATE EVENT RollDice
+ON SCHEDULE EVERY 5 SECOND
+DO 
+INSERT DiceRolls (DiceEyes) VALUES (1+FLOOR(6*RAND()));
+
+SELECT DISTINCT DiceEyes, COUNT(DiceEyes)
+FROM DiceRolls WHERE RollNo <= 10
+GROUP BY DiceEyes;
+
+SET GLOBAL event_scheduler = 0;
